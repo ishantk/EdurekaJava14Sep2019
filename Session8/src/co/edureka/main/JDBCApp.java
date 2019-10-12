@@ -28,7 +28,7 @@ public class JDBCApp {
 		// We must save the data in the database now permanently
 		 */
 		
-		Customer customer = new Customer(0, "Mike Johnson", "+91 90000 00001", "mike.j@example.com");
+		//Customer customer = new Customer(0, "Mike Johnson", "+91 90000 00001", "mike.j@example.com");
 		
 		
 		// 1. Load the Driver
@@ -53,7 +53,9 @@ public class JDBCApp {
 		//Customer cRef = db.fetchCustomer(2);
 		//System.out.println(cRef);
 		
-		db.executeProcedure(customer);
+		//db.executeProcedure(customer);
+		
+		db.executeBatchTransaction();
 		
 		// 4. Close the Connection
 		db.closeConnection();

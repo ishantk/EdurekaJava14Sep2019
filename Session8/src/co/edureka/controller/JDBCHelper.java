@@ -228,6 +228,37 @@ public class JDBCHelper {
 		}
 	}
 	
+	public void executeBatchTransaction() {
+		try {
+			
+			String sql1 = "update Customer set name = 'Joe Jackson' where cid = 5";
+			String sql2 = "delete from Customer where customerid = 7"; // putting up error intentionally by mentioning wring column name
+			
+			statment = connection.createStatement();
+			connection.setAutoCommit(false); // We will manage as transaction ourselves
+			
+			// Add as many as statements needed to execute as a batch
+			statment.addBatch(sql1);
+			statment.addBatch(sql2);
+			
+			statment.executeBatch();
+			connection.commit(); // Let Batch execute as a Transaction
+			System.out.println(">> Transaction Finished");
+		
+		} catch (Exception e) {
+			
+			System.out.println(">> Some Exception: "+e);
+			
+			try {
+				System.out.println(">> Rolling Back Transaction");
+				connection.rollback(); // rollback function throws Exception
+			}catch (Exception e1) {
+				System.out.println(">> Error While Rolling Back !! "+e);
+			}
+			
+		}
+	}
+	
 	// Step#4 Close Connection
 	public void closeConnection() {
 		try {
