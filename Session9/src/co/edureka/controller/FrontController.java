@@ -35,8 +35,8 @@ public class FrontController extends HttpServlet {
 		}else if(type.equals("Login")) {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Awesome");
-			//dispatcher.forward(request, response); 
-			dispatcher.include(request, response);
+			dispatcher.forward(request, response); 
+			//dispatcher.include(request, response);
 			
 		}else {
 			out.print(htmlResponse);
