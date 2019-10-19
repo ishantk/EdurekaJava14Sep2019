@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   <class name="co.edureka.model.YourRestaurant" table="YOUR_RESTAURANT">
+      
+      <id name="rid" column="RID">
+         <generator class="increment"/>
+      </id>
+      
+      <property name="name" column="NAME" />
+      <property name="type" column="TYPE" />
+      <property name="ratings" column="RATINGS" />
+      <property name="openingTime" column="OPENINGTIME" />
+      
+      <list name="items" cascade="all">
+      	<key column="RID"/>			<!-- Column RID will be created in table FOODITEM -->
+      	<list-index column="idx"/> 	<!-- Column in FOODITEM table maintaining index of ArrayList -->
+      	<one-to-many class="co.edureka.model.FoodItem"/>
+      </list>
+      
+   </class>
+   
+   <class name="co.edureka.model.FoodItem" table="FOODITEM">
+      
+      <id name="fid" column="FID">
+         <generator class="increment"/>
+      </id>
+      
+      <property name="name" column="NAME" />
+      <property name="price" column="PRICE" />
+      
+   </class>
+   
+</hibernate-mapping>

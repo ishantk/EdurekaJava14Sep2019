@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   <class name="co.edureka.model.Restaurant" table="RESTAURANT">
+      
+      <id name="rid" column="RID">
+         <generator class="increment"/>
+      </id>
+      
+      <property name="name" column="NAME" />
+      
+      <property name="type" column="TYPE" />
+      
+      <property name="ratings" column="RATINGS" />
+      
+      <property name="openingTime" column="OPENINGTIME" />
+      
+   </class>
+   
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+
+   
+   <class name="co.edureka.model.FoodItem" table="INHERITENCE_FOODITEM" discriminator-value="FoodItem">
+      
+      <id name="fid" column="FID">
+         <generator class="increment"/>
+      </id>
+      
+      <discriminator column="FOODTYPE" type="string"/>
+      
+      <property name="name" column="NAME" />
+      <property name="price" column="PRICE" />
+      
+      <subclass name="co.edureka.model.Burger" discriminator-value="Burger">
+         <property name="burgerName" column="BURGERNAME" />
+     	 <property name="dressing" column="DRESSING" />
+      		
+      	 <subclass name="co.edureka.model.VeggieBurger" discriminator-value="VeggieBurger">
+         	<property name="herbs" column="HERBS" />
+     		<property name="spice" column="SPICE" />
+      	</subclass>
+      
+      </subclass>
+      
+   </class>
+   
+</hibernate-mapping>
