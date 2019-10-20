@@ -31,7 +31,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		
+		/*
 		Restaurant r1 = new Restaurant();
 		//r1.setRid(null);
 		r1.setName("John's Cafe");
@@ -50,7 +50,7 @@ public class App {
 		
 		System.out.println(">> r3 data:");
 		System.out.println(r3);
-		
+		*/
 		
 		// Data in Object is temporary !! We need to save the data permanently !!
 		// We will use Hibernate to perform DB operations now !!
@@ -83,6 +83,7 @@ public class App {
 			// Connection to the DataBase
 			session = sessionFactory.openSession();
 			//anotherSession = sessionFactory.openSession(); // We can maintain multiple sessions
+			
 			transaction = session.getTransaction(); // Obtain Reference to Transaction
 			
 			transaction.begin();
@@ -142,15 +143,32 @@ public class App {
 			}*/
 			
 			
-			session.save(r1);
-			session.save(r2);
-			session.save(r3);
+			//session.save(r1);
+			//session.save(r2);
+			//session.save(r3);
+			
+			System.out.println(">> Fetching 2 records from DB:");
+			Restaurant r1 = session.get(Restaurant.class, 1);
+			Restaurant r2 = session.get(Restaurant.class, 3);
+			System.out.println(">> "+r1);
+			System.out.println(">> "+r2);
+			
+			System.out.println(">> Re-Fetching Same 2 records from DB:");
+			Restaurant r3 = session.get(Restaurant.class, 1);
+			Restaurant r4 = session.get(Restaurant.class, 3);
+			System.out.println(">> "+r3);
+			System.out.println(">> "+r4);
 			
 			transaction.commit(); // it shall save 50 restaurant objects as a Batch Operation
 			
 			System.out.println(">> Hibernate Transcation Finished");
 			
+			// Till Time we do not close the session we have the data in Cache
 			//session.close();
+			
+			
+			// Till Time we do not close the sessionFactory we have the data in Cache
+			//sessionFactory.close();
 			
 			
 		} catch (Exception e) {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+   <!-- 
+   <bean id="fRef" class="co.edureka.bean.FoodItem">
+       <property name="name" value="Veggie Pizza"/>
+       <property name="price" value="200"/>
+   </bean>
+    -->
+
+   <!-- <bean id="rRef" class="co.edureka.bean.Restaurant">
+       <property name="name" value="Picinc Square"/>
+       <property name="phone" value="+91 99999 88888"/>
+       <property name="address" value="Redwood Shores"/> -->
+       <!--  <constructor-arg ref="fRef"/> -->	<!-- CONSTRUCTOR INJECTION -->
+       <!-- <property name="item" ref="fRef"/>		SETTER INJECTION
+       
+       <property name="departments">
+       	<list>
+       		<value>Admin</value>
+       		<value>Accounts</value>
+       		<value>HR</value>
+       		<value>Sales</value>
+       		<value>Marketing</value>
+       	</list>
+       </property>
+      
+   </bean>	 -->
+   
+    <bean id="item" class="co.edureka.bean.FoodItem">
+       <property name="name" value="Veggie Pizza"/>
+       <property name="price" value="200"/>
+   </bean>
+   
+   <!-- NO INJECTION i.e. CONSTRUCTOR OR SETTER GIVEN HERE -->
+   <bean id="restaurant" class="co.edureka.bean.Restaurant">
+       <property name="name" value="Picinc Square"/>
+       <property name="phone" value="+91 99999 88888"/>
+       <property name="address" value="Redwood Shores"/>
+   </bean>
+   
+   <context:annotation-config/> <!-- Constructor or Setter Injection will be given in source code with annotation @Autowire -->
+
+</beans>

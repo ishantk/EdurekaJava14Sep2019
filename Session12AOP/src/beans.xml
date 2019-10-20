@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <bean id="pRef" class="co.edureka.bean.Product">
+       <property name="stock" value="5"/>
+       <property name="name" value="iPhone XI"/>
+       <property name="price" value="70000"/>
+   </bean>
+   
+   <bean id="befAdv" class="co.edureka.bean.BeforeAdvice"/>
+   <bean id="aftAdv" class="co.edureka.bean.AfterAdvice"/>
+   
+   <bean id="pRefProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+   		<property name="target" ref="pRef"/>
+   		<property name="interceptorNames">
+   			<list>
+   				<value>befAdv</value>
+   				<value>aftAdv</value>
+   			</list>
+   		</property>
+   </bean>
+   
+
+</beans>
