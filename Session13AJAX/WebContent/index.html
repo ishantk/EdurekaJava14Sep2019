@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search Users</title>
+
+<script type="text/javascript">
+	
+	var request;
+	
+	function searchReq(){
+		var name = document.searchForm.txtName.value;
+		var url = "fetchUsers.jsp?name="+name;
+		request = new XMLHttpRequest();
+		
+		try{
+			request.onreadystatechange = searchRes;
+			request.open("GET", url, true);
+			request.send();
+		}catch(e){
+			alert("Something Went Wrong !!");
+		}
+	}
+	
+	function searchRes(){
+		if(request.readyState == 4){
+			var res = request.responseText;
+			document.getElementById("data").innerHTML = res;
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+	<br/><br/><br/>
+	<center>
+		<h3>Search Users:</h3>
+		
+		<form name="searchForm">
+			<input type="text" placeholder="eg: Jo" name="txtName" onkeyup="searchReq()"/>
+		</form>
+	
+		<br/>
+		<h4>Results:</h4>
+		<span id="data">
+		
+		</span>
+	
+	</center>
+
+</body>
+</html>
